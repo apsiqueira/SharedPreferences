@@ -43,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
                 else{
 
-                    editor.putString("Primeiro nome " ,nome.getText().toString());
+                    editor.putString("Nome" ,nome.getText().toString());
                     editor.commit();
+                    nomeGravado.setText(nome.getText().toString());
+
 
 
 
@@ -61,9 +63,21 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            }
+
         });
+        SharedPreferences sharedPreferences=getSharedPreferences(ARQUIVO_SALVAMENTO,0);
 
+        if(sharedPreferences.contains("Nome")){
+
+            nomeEntrada=sharedPreferences.getString("primeiroNome","usuario nao existente");
+            nomeGravado.setText(nomeEntrada);
+
+        }
+        else{
+
+            nomeGravado.setText("Nome usuario ainda nao inserido");
+
+        }
 
 
     }
